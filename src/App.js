@@ -1,25 +1,47 @@
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchQuote } from './quoteSlice';
+import { Container, Button, Alert, Spinner } from 'react-bootstrap';
 import './App.css';
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+  const { quote, author, loading, error } = useSelector((state) => state.quote);
+
+  useEffect(() => {
+    dispatch(fetchQuote());
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+    <Container id="quote-box" className="d-flex flex-column align-items-center justify-content-center position-relative">
+    {loading && (
+      <div className="spinner-container">
+        <Spinner animation="border" role="status">
+        </Spinner>
+      </div>
+    )}
+    <div id="quote-container">
+      {!loading && !error && (
+        <>
+          <p id="text">{quote}</p>
+          <p id="author">- {author}</p>
+        </>
+      )}
+      {error && (
+        <Alert variant="danger">Error loading quote</Alert>
+      )}
+        <Button id="new-quote" onClick={() => dispatch(fetchQuote())} className=" m-3" variant="danger">New Quote</Button>
         <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+          id="tweet-quote"
+          href={`https://twitter.com/intent/tweet?text=${quote} - ${author}`}
+          target="_top"
+          className="btn btn-dark"
         >
-          Learn React
+          Tweet Quote
         </a>
-      </header>
-    </div>
+      </div>
+    </Container>
   );
-}
+};
 
 export default App;

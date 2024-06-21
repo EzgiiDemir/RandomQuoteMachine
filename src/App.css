@@ -1,38 +1,40 @@
-.App {
-  text-align: center;
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #220000 !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#quote-box {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  min-height: 100vh; /* Sayfanın tamamını kaplaması için */
+}
+
+#quote-container {
+  max-width: 600px; /* Quote içeriğinin maksimum genişliği */
+  text-align: center; /* Metinleri ortalamak için */
+  padding: 20px;
+  background-color: #f8f9fa46; /* Quote kutusu arka plan rengi */
+  border-radius: 8px;
   color: white;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.596); /* Hafif bir gölgelendirme */
 }
 
-.App-link {
-  color: #61dafb;
+#new-quote {
+  margin-top: 20px; /* Yeni alıntı butonunun üst boşluğu */
+  margin-bottom: 10px; /* Yeni alıntı butonunun alt boşluğu */
+  width: 200px; /* Buton genişliği */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#tweet-quote {
+  width: 200px; /* Tweet buton genişliği */
+}
+
+.spinner-container {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  color: white;
+  transform: translate(-50%, -50%);
 }
